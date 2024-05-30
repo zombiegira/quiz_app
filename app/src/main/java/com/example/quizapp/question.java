@@ -1,6 +1,10 @@
 package com.example.quizapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class question extends AppCompatActivity {
+    private ImageButton ibMath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +25,20 @@ public class question extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        ibMath = findViewById(R.id.ib_math);
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageButton clickedButton = (ImageButton) v;
+                if(clickedButton.getId() == R.id.ib_math) {
+                    Intent intent = new Intent();
+                    intent.setClass(question.this, answerActivity.class);
+                    question.this.startActivity(intent);
+
+                }
+            }
+        };
+        ibMath.setOnClickListener(onClickListener);
     }
 }

@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton_m"
+        android:id="@+id/ib_math"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -41,47 +41,47 @@
         app:srcCompat="@drawable/math" />
 
     <ImageButton
-        android:id="@+id/imageButton_e"
+        android:id="@+id/ib_english"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton_m"
+        app:layout_constraintTop_toBottomOf="@+id/ib_math"
         app:srcCompat="@drawable/eng" />
 
     <ImageButton
-        android:id="@+id/imageButton_c"
+        android:id="@+id/ib_chinese"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton_e"
+        app:layout_constraintTop_toBottomOf="@+id/ib_english"
         app:srcCompat="@drawable/chinese" />
 
     <ImageButton
-        android:id="@+id/imageButton_g"
+        android:id="@+id/ib_geography"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton_c"
+        app:layout_constraintTop_toBottomOf="@+id/ib_chinese"
         app:srcCompat="@drawable/geog" />
 
     <ImageButton
-        android:id="@+id/imageButton6"
+        android:id="@+id/ib_physics"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton_g"
+        app:layout_constraintTop_toBottomOf="@+id/ib_geography"
         app:srcCompat="@drawable/phy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
