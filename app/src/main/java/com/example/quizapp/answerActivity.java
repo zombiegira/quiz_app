@@ -1,7 +1,6 @@
 package com.example.quizapp;
 
 import android.app.AlertDialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,10 +12,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class answerActivity extends AppCompatActivity {
-    private TextView tvQuestionNumber, tvQuestion;
-    private Button btnOption1, btnOption2, btnOption3, btnOption4, btnSubmit;
-    int score=0;
+public class answerActivity extends AppCompatActivity implements View.OnClickListener {
+    TextView tvQuestionNumber, tvQuestion;
+    Button btnOption1, btnOption2, btnOption3, btnOption4, btnSubmit;
+    int score = 0;
     int totalQuestion = questionSource.question.length;
     int currentQuestionIndex = 0;
     String selectedAnswer = "";
@@ -40,83 +39,80 @@ public class answerActivity extends AppCompatActivity {
         btnOption4 = findViewById(R.id.btn_option_4);
         btnSubmit = findViewById(R.id.btn_submit);
 
-        tvQuestionNumber.setText(String.valueOf(currentQuestionIndex));
+        btnOption1.setOnClickListener(this);
+        btnOption2.setOnClickListener(this);
+        btnOption3.setOnClickListener(this);
+        btnOption4.setOnClickListener(this);
+        btnSubmit.setOnClickListener(this);
 
-        btnOption1.setOnClickListener(onClickListener);
-        btnOption2.setOnClickListener(onClickListener);
-        btnOption3.setOnClickListener(onClickListener);
-        btnOption4.setOnClickListener(onClickListener);
-        btnSubmit.setOnClickListener(onClickListener);
+        tvQuestionNumber.setText(String.valueOf(currentQuestionIndex + 1));
 
+        loadNewQuestion();
     }
 
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            btnOption1.setBackgroundResource(R.color.white);
-            btnOption2.setBackgroundResource(R.color.white);
-            btnOption3.setBackgroundResource(R.color.white);
-            btnOption4.setBackgroundResource(R.color.white);
+    @Override
+    public void onClick(View v) {
+        Button clickedButton = (Button) v;
 
-            tvQuestionNumber.setText(String.valueOf(currentQuestionIndex + 1));
-
-            Button clickedButton = (Button) v;
-            if(clickedButton.getId() == R.id.btn_submit) {
-                if(selectedAnswer.equals(questionSource.correctAnswers[currentQuestionIndex])) {
-                    score++;
-                }
-                currentQuestionIndex++;
-                loadNewQuestion();
+        if (clickedButton.getId() == R.id.btn_submit) {
+            if (selectedAnswer != null && selectedAnswer.equals(questionSource.correctAnswers[currentQuestionIndex])) {
+                score++;
             }
-            else {
-                selectedAnswer = clickedButton.getText().toString();
-                clickedButton.setBackgroundResource(R.color.main);
-            }
-        }
-
-        void loadNewQuestion() {
-            if(currentQuestionIndex == totalQuestion) {
-                finishQuiz();
-                return;
-            }
-
-//            tvQuestion.setText(String.valueOf(questionSource.question[currentQuestionIndex]));
-//            btnOption1.setText(String.valueOf(questionSource.choices[currentQuestionIndex][0]));
-//            btnOption2.setText(String.valueOf(questionSource.choices[currentQuestionIndex][1]));
-//            btnOption3.setText(String.valueOf(questionSource.choices[currentQuestionIndex][2]));
-//            btnOption4.setText(String.valueOf(questionSource.choices[currentQuestionIndex][3]));
-
-            tvQuestion.setText(questionSource.question[currentQuestionIndex]);
-            btnOption1.setText(questionSource.choices[currentQuestionIndex][0]);
-            btnOption2.setText(questionSource.choices[currentQuestionIndex][1]);
-            btnOption3.setText(questionSource.choices[currentQuestionIndex][2]);
-            btnOption4.setText(questionSource.choices[currentQuestionIndex][3]);
-        }
-
-        void finishQuiz() {
-            String passStatus = "";
-            if(score > totalQuestion * 0.6) {
-                passStatus = "Passed";
-            }
-            else {
-                passStatus = "Failed";
-            }
-
-            new AlertDialog.Builder(answerActivity.this)
-                    .setTitle(passStatus)
-                    .setMessage("Score is "+ score+" out of "+ totalQuestion)
-                    .setPositiveButton("Restart",(dialogInterface, i) -> restartQuiz() )
-                    .setCancelable(false)
-                    .show();
-        }
-        void restartQuiz(){
-            btnOption1.setBackgroundResource(R.color.white);
-            btnOption2.setBackgroundResource(R.color.white);
-            btnOption3.setBackgroundResource(R.color.white);
-            btnOption4.setBackgroundResource(R.color.white);
-            score = 0;
-            currentQuestionIndex =0;
+            currentQuestionIndex++;
             loadNewQuestion();
+        } else {
+            selectedAnswer = clickedButton.getText().toString();
+
+            resetButtonBackgrounds();
+
+            clickedButton.setBackgroundResource(R.color.main);  // Change to the desired color when clicked
         }
-    };
+    }
+
+    private void resetButtonBackgrounds() {
+        btnOption1.setBackgroundResource(android.R.drawable.btn_default);
+        btnOption2.setBackgroundResource(android.R.drawable.btn_default);
+        btnOption3.setBackgroundResource(android.R.drawable.btn_default);
+        btnOption4.setBackgroundResource(android.R.drawable.btn_default);
+    }
+
+    void loadNewQuestion() {
+        if (currentQuestionIndex == totalQuestion) {
+            finishQuiz();
+            return;
+        }
+
+        resetButtonBackgrounds();
+
+        tvQuestion.setText(questionSource.question[currentQuestionIndex]);
+        btnOption1.setText(questionSource.choices[currentQuestionIndex][0]);
+        btnOption2.setText(questionSource.choices[currentQuestionIndex][1]);
+        btnOption3.setText(questionSource.choices[currentQuestionIndex][2]);
+        btnOption4.setText(questionSource.choices[currentQuestionIndex][3]);
+
+        tvQuestionNumber.setText(String.valueOf(currentQuestionIndex + 1));
+    }
+
+    void finishQuiz() {
+        String passStatus = "";
+        if (score > totalQuestion * 0.6) {
+            passStatus = "Passed";
+        } else {
+            passStatus = "Failed";
+        }
+
+        new AlertDialog.Builder(answerActivity.this)
+                .setTitle(passStatus)
+                .setMessage("Score is " + score + " out of " + totalQuestion)
+                .setPositiveButton("Restart", (dialogInterface, i) -> restartQuiz())
+                .setCancelable(false)
+                .show();
+    }
+
+    void restartQuiz() {
+        resetButtonBackgrounds();
+        score = 0;
+        currentQuestionIndex = 0;
+        loadNewQuestion();
+    }
 }
