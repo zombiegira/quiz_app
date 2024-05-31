@@ -40,45 +40,69 @@ public class answerActivity extends AppCompatActivity {
         btnOption4 = findViewById(R.id.btn_option_4);
         btnSubmit = findViewById(R.id.btn_submit);
 
-        tvQuestionNumber.setText(String.valueOf(currentQuestionIndex));
+        tvQuestionNumber.setText(String.valueOf(currentQuestionIndex + 1));
+        tvQuestion.setText(questionSource.question[currentQuestionIndex]);
+        btnOption1.setText(questionSource.choices[currentQuestionIndex][0]);
+        btnOption2.setText(questionSource.choices[currentQuestionIndex][1]);
+        btnOption3.setText(questionSource.choices[currentQuestionIndex][2]);
+        btnOption4.setText(questionSource.choices[currentQuestionIndex][3]);
 
-        btnOption1.setOnClickListener(onClickListener);
-        btnOption2.setOnClickListener(onClickListener);
-        btnOption3.setOnClickListener(onClickListener);
-        btnOption4.setOnClickListener(onClickListener);
-        btnSubmit.setOnClickListener(onClickListener);
-
-    }
-
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            btnOption1.setBackgroundResource(R.color.white);
-            btnOption2.setBackgroundResource(R.color.white);
-            btnOption3.setBackgroundResource(R.color.white);
-            btnOption4.setBackgroundResource(R.color.white);
-
-            tvQuestionNumber.setText(String.valueOf(currentQuestionIndex + 1));
-
-            Button clickedButton = (Button) v;
-            if(clickedButton.getId() == R.id.btn_submit) {
-                if(selectedAnswer.equals(questionSource.correctAnswers[currentQuestionIndex])) {
-                    score++;
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Button clickedButton = (Button) v;
+                if(clickedButton.getId() == R.id.btn_submit) {
+                    if(selectedAnswer.equals(questionSource.correctAnswers[currentQuestionIndex])) {
+                        score++;
+                    }
+                    currentQuestionIndex++;
+                    loadNewQuestion();
                 }
-                currentQuestionIndex++;
-                loadNewQuestion();
+                else {
+                    selectedAnswer = clickedButton.getText().toString();
+                }
+                if(clickedButton.getId() == R.id.btn_option_1) {
+                    btnOption1.setBackgroundResource(R.drawable.bgalt);
+                    btnOption2.setBackgroundResource(R.drawable.bgnorm);
+                    btnOption3.setBackgroundResource(R.drawable.bgnorm);
+                    btnOption4.setBackgroundResource(R.drawable.bgnorm);
+                }
+                else if(clickedButton.getId() == R.id.btn_option_2) {
+                    btnOption1.setBackgroundResource(R.drawable.bgnorm);
+                    btnOption2.setBackgroundResource(R.drawable.bgalt);
+                    btnOption3.setBackgroundResource(R.drawable.bgnorm);
+                    btnOption4.setBackgroundResource(R.drawable.bgnorm);
+                }
+                else if(clickedButton.getId() == R.id.btn_option_3) {
+                    btnOption1.setBackgroundResource(R.drawable.bgnorm);
+                    btnOption2.setBackgroundResource(R.drawable.bgnorm);
+                    btnOption3.setBackgroundResource(R.drawable.bgalt);
+                    btnOption4.setBackgroundResource(R.drawable.bgnorm);
+                }
+                else if(clickedButton.getId() == R.id.btn_option_4) {
+                    btnOption1.setBackgroundResource(R.drawable.bgnorm);
+                    btnOption2.setBackgroundResource(R.drawable.bgnorm);
+                    btnOption3.setBackgroundResource(R.drawable.bgnorm);
+                    btnOption4.setBackgroundResource(R.drawable.bgalt);
+                }
+                //clickedButton.setBackgroundResource(R.color.main);
             }
-            else {
-                selectedAnswer = clickedButton.getText().toString();
-                clickedButton.setBackgroundResource(R.color.main);
-            }
-        }
 
-        void loadNewQuestion() {
-            if(currentQuestionIndex == totalQuestion) {
-                finishQuiz();
-                return;
-            }
+            void loadNewQuestion() {
+                if(currentQuestionIndex + 1 == 5) {
+                    tvQuestionNumber.setText(String.valueOf(4));
+                }
+                else {
+                    tvQuestionNumber.setText(String.valueOf(currentQuestionIndex + 1));
+                }
+                btnOption1.setBackgroundResource(R.drawable.bgnorm);
+                btnOption2.setBackgroundResource(R.drawable.bgnorm);
+                btnOption3.setBackgroundResource(R.drawable.bgnorm);
+                btnOption4.setBackgroundResource(R.drawable.bgnorm);
+                if(currentQuestionIndex == totalQuestion) {
+                    finishQuiz();
+                    return;
+                }
 
 //            tvQuestion.setText(String.valueOf(questionSource.question[currentQuestionIndex]));
 //            btnOption1.setText(String.valueOf(questionSource.choices[currentQuestionIndex][0]));
@@ -86,37 +110,44 @@ public class answerActivity extends AppCompatActivity {
 //            btnOption3.setText(String.valueOf(questionSource.choices[currentQuestionIndex][2]));
 //            btnOption4.setText(String.valueOf(questionSource.choices[currentQuestionIndex][3]));
 
-            tvQuestion.setText(questionSource.question[currentQuestionIndex]);
-            btnOption1.setText(questionSource.choices[currentQuestionIndex][0]);
-            btnOption2.setText(questionSource.choices[currentQuestionIndex][1]);
-            btnOption3.setText(questionSource.choices[currentQuestionIndex][2]);
-            btnOption4.setText(questionSource.choices[currentQuestionIndex][3]);
-        }
-
-        void finishQuiz() {
-            String passStatus = "";
-            if(score > totalQuestion * 0.6) {
-                passStatus = "Passed";
-            }
-            else {
-                passStatus = "Failed";
+                tvQuestion.setText(questionSource.question[currentQuestionIndex]);
+                btnOption1.setText(questionSource.choices[currentQuestionIndex][0]);
+                btnOption2.setText(questionSource.choices[currentQuestionIndex][1]);
+                btnOption3.setText(questionSource.choices[currentQuestionIndex][2]);
+                btnOption4.setText(questionSource.choices[currentQuestionIndex][3]);
             }
 
-            new AlertDialog.Builder(answerActivity.this)
-                    .setTitle(passStatus)
-                    .setMessage("Score is "+ score+" out of "+ totalQuestion)
-                    .setPositiveButton("Restart",(dialogInterface, i) -> restartQuiz() )
-                    .setCancelable(false)
-                    .show();
-        }
-        void restartQuiz(){
-            btnOption1.setBackgroundResource(R.color.white);
-            btnOption2.setBackgroundResource(R.color.white);
-            btnOption3.setBackgroundResource(R.color.white);
-            btnOption4.setBackgroundResource(R.color.white);
-            score = 0;
-            currentQuestionIndex =0;
-            loadNewQuestion();
-        }
-    };
+            void finishQuiz() {
+                String passStatus = "";
+                if(score > totalQuestion * 0.6) {
+                    passStatus = "Passed";
+                }
+                else {
+                    passStatus = "Failed";
+                }
+
+                new AlertDialog.Builder(answerActivity.this)
+                        .setTitle(passStatus)
+                        .setMessage("Score is "+ score+" out of "+ totalQuestion)
+                        .setPositiveButton("Restart",(dialogInterface, i) -> restartQuiz() )
+                        .setCancelable(false)
+                        .show();
+            }
+            void restartQuiz(){
+                btnOption1.setBackgroundResource(R.color.white);
+                btnOption2.setBackgroundResource(R.color.white);
+                btnOption3.setBackgroundResource(R.color.white);
+                btnOption4.setBackgroundResource(R.color.white);
+                score = 0;
+                currentQuestionIndex =0;
+                loadNewQuestion();
+            }
+        };
+        btnOption1.setOnClickListener(onClickListener);
+        btnOption2.setOnClickListener(onClickListener);
+        btnOption3.setOnClickListener(onClickListener);
+        btnOption4.setOnClickListener(onClickListener);
+        btnSubmit.setOnClickListener(onClickListener);
+
+    }
 }

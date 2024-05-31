@@ -81,9 +81,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:text="Sign up"
+        android:textColorLink="#FFAD43C7"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:rippleColor="#AD43C7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
