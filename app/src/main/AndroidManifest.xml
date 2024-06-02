@@ -16,13 +16,13 @@
             android:name=".answerActivity"
             android:exported="false" />
         <activity
-            android:name=".signin"
-            android:exported="false" />
-        <activity
             android:name=".signup"
             android:exported="false" />
         <activity
             android:name=".question"
+            android:exported="false"/>
+        <activity
+            android:name=".signin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
