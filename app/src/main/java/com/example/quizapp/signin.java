@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +30,7 @@ public class signin extends AppCompatActivity {
   private EditText signin_pass;
   private Button btn_login;
   private FirebaseAuth mAuth;
+  private TextView tvNoAccount;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class signin extends AppCompatActivity {
     signin_pass = findViewById(R.id.signin_pass);
     btn_login = findViewById(R.id.login_btn);
     mAuth=FirebaseAuth.getInstance();
+    tvNoAccount = findViewById(R.id.tv_no_account);
     View.OnClickListener listener=new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -51,12 +54,15 @@ public class signin extends AppCompatActivity {
           String email = signin_user.getText().toString();
           String password = signin_pass.getText().toString();
           signIn(email, password);
+        } else if (view.getId() == R.id.tv_no_account) {
+            Intent intent = new Intent();
+            intent.setClass(signin.this, signup.class);
+            signin.this.startActivity(intent);
         }
-
       }
     };
-
     btn_login.setOnClickListener(listener);
+    tvNoAccount.setOnClickListener(listener);
   }
   private void signIn(String email, String password) {
     mAuth.signInWithEmailAndPassword(email, password)
@@ -71,7 +77,7 @@ public class signin extends AppCompatActivity {
                   signin.this.startActivity(intent);
                 } else {
                   // 登入失敗，顯示錯誤訊息
-                  Toast.makeText(signin.this, "登入失敗,請檢察帳號與密碼.",
+                  Toast.makeText(signin.this, "登入失敗,請檢查帳號與密碼。",
                           Toast.LENGTH_SHORT).show();
                 }
               }

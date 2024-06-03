@@ -1,6 +1,7 @@
 package com.example.quizapp;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -141,6 +142,11 @@ public class answerActivity extends AppCompatActivity {
                 score = 0;
                 currentQuestionIndex =0;
                 loadNewQuestion();
+
+                Intent intent = new Intent();
+                intent.setClass(answerActivity.this, question.class);
+                answerActivity.this.startActivity(intent);
+
             }
         };
         btnOption1.setOnClickListener(onClickListener);
