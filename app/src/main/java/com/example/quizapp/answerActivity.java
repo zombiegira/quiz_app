@@ -118,22 +118,29 @@ public class answerActivity extends AppCompatActivity {
                 btnOption4.setText(questionSource.choices[currentQuestionIndex][3]);
             }
 
-            void finishQuiz() {
-                String passStatus = "";
-                if(score > totalQuestion * 0.6) {
-                    passStatus = "Passed";
-                }
-                else {
-                    passStatus = "Failed";
-                }
-
-                new AlertDialog.Builder(answerActivity.this)
-                        .setTitle(passStatus)
-                        .setMessage("Score is "+ score+" out of "+ totalQuestion)
-                        .setPositiveButton("Restart",(dialogInterface, i) -> restartQuiz() )
-                        .setCancelable(false)
-                        .show();
-            }
+//            void finishQuiz() {
+//                String passStatus = "";
+//                if(score > totalQuestion * 0.6) {
+//                    passStatus = "Passed";
+//                }
+//                else {
+//                    passStatus = "Failed";
+//                }
+//
+//                new AlertDialog.Builder(answerActivity.this)
+//                        .setTitle(passStatus)
+//                        .setMessage("Score is "+ score+" out of "+ totalQuestion)
+//                        .setPositiveButton("Restart",(dialogInterface, i) -> restartQuiz() )
+//                        .setCancelable(false)
+//                        .show();
+//            }
+void finishQuiz() {
+    Intent intent = new Intent(answerActivity.this, resultActivity.class);
+    intent.putExtra("score", score);
+    intent.putExtra("totalQuestions", totalQuestion);
+    startActivity(intent);
+    finish();
+}
             void restartQuiz(){
                 btnOption1.setBackgroundResource(R.color.white);
                 btnOption2.setBackgroundResource(R.color.white);
