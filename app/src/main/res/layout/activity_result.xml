@@ -81,7 +81,8 @@
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_correct"
-        app:srcCompat="@drawable/restart_icon" />
+        app:srcCompat="@drawable/restart_icon"
+        android:background="@android:color/transparent"/>
 
     <ImageButton
         android:id="@+id/btn_home"
@@ -92,7 +93,8 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_wrong"
-        app:srcCompat="@drawable/home_button" />
+        app:srcCompat="@drawable/home_button"
+        android:background="@android:color/transparent"/>
 
     <TextView
         android:id="@+id/textView3"
