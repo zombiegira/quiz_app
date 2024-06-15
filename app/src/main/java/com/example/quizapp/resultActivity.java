@@ -2,7 +2,6 @@ package com.example.quizapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -73,7 +72,7 @@ public class resultActivity extends AppCompatActivity {
         });
 
         restart.setOnClickListener(v -> {
-            Intent restartIntent = new Intent(resultActivity.this, answerActivity.class);
+            Intent restartIntent = new Intent(resultActivity.this, quizActivity.class);
             startActivity(restartIntent);
             finish();
         });

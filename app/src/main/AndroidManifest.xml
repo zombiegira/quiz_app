@@ -16,7 +16,7 @@
             android:name=".resultActivity"
             android:exported="false" />
         <activity
-            android:name=".answerActivity"
+            android:name=".quizActivity"
             android:exported="false" />
         <activity
             android:name=".signup"
