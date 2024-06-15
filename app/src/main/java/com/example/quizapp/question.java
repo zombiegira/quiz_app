@@ -3,7 +3,6 @@ package com.example.quizapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -33,7 +32,7 @@ public class question extends AppCompatActivity {
                 ImageButton clickedButton = (ImageButton) v;
                 if(clickedButton.getId() == R.id.ib_math) {
                     Intent intent = new Intent();
-                    intent.setClass(question.this, answerActivity.class);
+                    intent.setClass(question.this, quizActivity.class);
                     question.this.startActivity(intent);
 
                 }
