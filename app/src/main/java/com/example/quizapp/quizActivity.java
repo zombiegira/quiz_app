@@ -174,7 +174,7 @@ void finishQuiz() {
                 loadNewQuestion();
 
                 Intent intent = new Intent();
-                intent.setClass(quizActivity.this, question.class);
+                intent.setClass(quizActivity.this, questionSelectUserActivity.class);
                 quizActivity.this.startActivity(intent);
 
             }

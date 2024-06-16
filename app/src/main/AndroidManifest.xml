@@ -22,13 +22,16 @@
             android:name=".quizActivity"
             android:exported="false" />
         <activity
-            android:name=".signup"
+            android:name=".signupActivity"
             android:exported="false" />
         <activity
-            android:name=".question"
+            android:name=".questionSelectUserActivity"
             android:exported="false" />
         <activity
-            android:name=".signin"
+            android:name=".questionSelectAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".signinActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
