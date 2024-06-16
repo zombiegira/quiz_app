@@ -66,7 +66,7 @@ public class resultActivity extends AppCompatActivity {
         total.setTextColor(getResources().getColor(android.R.color.holo_purple)); // Purple color
 
         home.setOnClickListener(v -> {
-            Intent homeIntent = new Intent(resultActivity.this, question.class);
+            Intent homeIntent = new Intent(resultActivity.this, questionSelectUserActivity.class);
             startActivity(homeIntent);
             finish();
         });

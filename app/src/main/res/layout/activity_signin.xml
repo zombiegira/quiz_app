@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".signin">
+    tools:context=".signinActivity">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -50,7 +50,7 @@
         app:srcCompat="@drawable/password" />
 
     <EditText
-        android:id="@+id/signin_user"
+        android:id="@+id/et_signin_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
-        android:id="@+id/signin_pass"
+        android:id="@+id/et_signin_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -73,10 +73,10 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signin_user" />
+        app:layout_constraintTop_toBottomOf="@+id/et_signin_account" />
 
     <Button
-        android:id="@+id/login_btn"
+        android:id="@+id/btn_signin_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
@@ -84,7 +84,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signin_pass" />
+        app:layout_constraintTop_toBottomOf="@+id/et_signin_password" />
 
     <TextView
         android:id="@+id/tv_no_account"
@@ -97,6 +97,6 @@
         android:textColor="@android:color/holo_blue_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_signin_confirm" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

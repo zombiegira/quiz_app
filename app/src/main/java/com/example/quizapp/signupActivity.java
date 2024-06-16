@@ -19,7 +19,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class signup extends AppCompatActivity {
+public class signupActivity extends AppCompatActivity {
 
   private EditText etEmail;
   private EditText etPassword;
@@ -38,8 +38,8 @@ public class signup extends AppCompatActivity {
     });
 
     mAuth = FirebaseAuth.getInstance();
-    etEmail = findViewById(R.id.signin_user);
-    etPassword = findViewById(R.id.signin_pass);
+    etEmail = findViewById(R.id.et_signin_account);
+    etPassword = findViewById(R.id.et_signin_password);
     btnSignUp = findViewById(R.id.signup);
 
     View.OnClickListener listener = new View.OnClickListener() {
@@ -61,11 +61,11 @@ public class signup extends AppCompatActivity {
         if (task.isSuccessful()) {
           // 註冊成功，更新 UI
           FirebaseUser user = mAuth.getCurrentUser();
-          Toast.makeText(signup.this, "註冊成功", Toast.LENGTH_SHORT).show();;
-          signup.this.finish();
+          Toast.makeText(signupActivity.this, "註冊成功", Toast.LENGTH_SHORT).show();;
+          signupActivity.this.finish();
         } else {
           // 註冊失敗，顯示錯誤訊息
-          Toast.makeText(signup.this, "註冊失敗",
+          Toast.makeText(signupActivity.this, "註冊失敗",
             Toast.LENGTH_SHORT).show();
         }
       }
