@@ -13,6 +13,9 @@
         android:theme="@style/Theme.QuizApp"
         tools:targetApi="31">
         <activity
+            android:name=".editQuestionActivity"
+            android:exported="false" />
+        <activity
             android:name=".resultActivity"
             android:exported="false" />
         <activity
