@@ -1,6 +1,5 @@
 package com.example.quizapp;
 
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
@@ -38,10 +37,23 @@ public class editQuestionActivity extends AppCompatActivity {
             + COLUMN_OPTION4 + " TEXT, "
             + COLUMN_ANSWER + " TEXT)";
 
-    private static final String INSERT_MATHQUESTION_SQL = "INSERT INTO " + TABLE_NAME
+    private static final String INSERT_MATHQUESTION1_SQL = "INSERT INTO " + TABLE_NAME
             + " (" + COLUMN_QUESTION + ", " + COLUMN_OPTION1 + ", " + COLUMN_OPTION2 + ", "
             + COLUMN_OPTION3 + ", " + COLUMN_OPTION4 + ", " + COLUMN_ANSWER + ") VALUES "
             + "('1+1', '1', '2', '3', '4', '2')";
+    private static final String INSERT_MATHQUESTION2_SQL = "INSERT INTO " + TABLE_NAME
+            + " (" + COLUMN_QUESTION + ", " + COLUMN_OPTION1 + ", " + COLUMN_OPTION2 + ", "
+            + COLUMN_OPTION3 + ", " + COLUMN_OPTION4 + ", " + COLUMN_ANSWER + ") VALUES "
+            + "('5*5', '1', '25', '11', '0', '25')";
+    private static final String INSERT_MATHQUESTION3_SQL = "INSERT INTO " + TABLE_NAME
+            + " (" + COLUMN_QUESTION + ", " + COLUMN_OPTION1 + ", " + COLUMN_OPTION2 + ", "
+            + COLUMN_OPTION3 + ", " + COLUMN_OPTION4 + ", " + COLUMN_ANSWER + ") VALUES "
+            + "('0-1', '1', '0', '-1', '2', '-1')";
+    private static final String INSERT_MATHQUESTION4_SQL = "INSERT INTO " + TABLE_NAME
+            + " (" + COLUMN_QUESTION + ", " + COLUMN_OPTION1 + ", " + COLUMN_OPTION2 + ", "
+            + COLUMN_OPTION3 + ", " + COLUMN_OPTION4 + ", " + COLUMN_ANSWER + ") VALUES "
+            + "('(a + i)(1 - ai) = 2, a = ?', '-1', '0', '1', '2', '1')";
+
 
     private EditText etQuestionStatement;
     private EditText etOption1;
@@ -66,7 +78,11 @@ public class editQuestionActivity extends AppCompatActivity {
 
         questionPool = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
         questionPool.execSQL(CREATE_TABLE_SQL);
-        questionPool.execSQL(INSERT_MATHQUESTION_SQL);
+        questionPool.execSQL("DELETE FROM " + TABLE_NAME);
+        questionPool.execSQL(INSERT_MATHQUESTION1_SQL);
+        questionPool.execSQL(INSERT_MATHQUESTION2_SQL);
+        questionPool.execSQL(INSERT_MATHQUESTION3_SQL);
+        questionPool.execSQL(INSERT_MATHQUESTION4_SQL);
 
         etQuestionStatement = findViewById(R.id.et_question_statement);
         etOption1 = findViewById(R.id.et_option_1);
@@ -112,7 +128,7 @@ public class editQuestionActivity extends AppCompatActivity {
                 R.layout.list_item_6, // Custom layout
                 cursor,
                 new String[]{COLUMN_QUESTION, COLUMN_OPTION1, COLUMN_OPTION2, COLUMN_OPTION3, COLUMN_OPTION4, COLUMN_ANSWER},
-                new int[]{R.id.et_question_statement, R.id.et_option_1, R.id.et_option_2, R.id.et_option_3, R.id.et_option_4, R.id.et_answer},
+                new int[]{R.id.tv_question_statement, R.id.tv_option_1, R.id.tv_option_2, R.id.tv_option_3, R.id.tv_option_4, R.id.tv_answer},
                 0);
 
         lvQuestions.setAdapter(simpleCursorAdapter);

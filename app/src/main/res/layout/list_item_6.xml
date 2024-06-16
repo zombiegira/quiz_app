@@ -1,43 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/list_item_6.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <TextView
-        android:id="@+id/text1"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_question_statement"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Text1" />
+        android:text="Question Statement" />
 
     <TextView
-        android:id="@+id/text2"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_option_1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Text2" />
+        android:text="Option 1" />
 
     <TextView
-        android:id="@+id/text3"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_option_2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Text3" />
+        android:text="Option 2" />
 
     <TextView
-        android:id="@+id/text4"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_option_3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Text4" />
+        android:text="Option 3" />
 
     <TextView
-        android:id="@+id/text5"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_option_4"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Text5" />
+        android:text="Option 4" />
 
     <TextView
-        android:id="@+id/text6"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_answer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Text6" />
-
+        android:text="Answer" />
 </LinearLayout>

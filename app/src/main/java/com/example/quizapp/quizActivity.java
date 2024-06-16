@@ -101,7 +101,7 @@ public class quizActivity extends AppCompatActivity {
                     btnOption3.setBackgroundResource(R.drawable.bgnorm);
                     btnOption4.setBackgroundResource(R.drawable.bgalt);
                 }
-                //clickedButton.setBackgroundResource(R.color.main);
+
             }
 
             void loadNewQuestion() {
@@ -126,12 +126,6 @@ public class quizActivity extends AppCompatActivity {
                     return;
                 }
 
-//            tvQuestion.setText(String.valueOf(questionSource.question[currentQuestionIndex]));
-//            btnOption1.setText(String.valueOf(questionSource.choices[currentQuestionIndex][0]));
-//            btnOption2.setText(String.valueOf(questionSource.choices[currentQuestionIndex][1]));
-//            btnOption3.setText(String.valueOf(questionSource.choices[currentQuestionIndex][2]));
-//            btnOption4.setText(String.valueOf(questionSource.choices[currentQuestionIndex][3]));
-
                 tvQuestion.setText(questionSource.question[currentQuestionIndex]);
                 btnOption1.setText(questionSource.choices[currentQuestionIndex][0]);
                 btnOption2.setText(questionSource.choices[currentQuestionIndex][1]);
@@ -139,29 +133,14 @@ public class quizActivity extends AppCompatActivity {
                 btnOption4.setText(questionSource.choices[currentQuestionIndex][3]);
             }
 
-//            void finishQuiz() {
-//                String passStatus = "";
-//                if(score > totalQuestion * 0.6) {
-//                    passStatus = "Passed";
-//                }
-//                else {
-//                    passStatus = "Failed";
-//                }
-//
-//                new AlertDialog.Builder(answerActivity.this)
-//                        .setTitle(passStatus)
-//                        .setMessage("Score is "+ score+" out of "+ totalQuestion)
-//                        .setPositiveButton("Restart",(dialogInterface, i) -> restartQuiz() )
-//                        .setCancelable(false)
-//                        .show();
-//            }
-void finishQuiz() {
-    Intent intent = new Intent(quizActivity.this, resultActivity.class);
-    intent.putExtra("score", score);
-    intent.putExtra("totalQuestions", totalQuestion);
-    startActivity(intent);
-    finish();
-}
+
+            void finishQuiz() {
+                Intent intent = new Intent(quizActivity.this, resultActivity.class);
+                intent.putExtra("score", score);
+                intent.putExtra("totalQuestions", totalQuestion);
+                startActivity(intent);
+                finish();
+            }
             void restartQuiz(){
                 btnOption1.setBackgroundResource(R.color.white);
                 btnOption2.setBackgroundResource(R.color.white);
