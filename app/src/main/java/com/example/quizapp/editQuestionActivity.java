@@ -2,6 +2,7 @@ package com.example.quizapp;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -62,8 +63,17 @@ public class editQuestionActivity extends AppCompatActivity {
                     String option3 = etOption3.getText().toString();
                     String option4 = etOption4.getText().toString();
                     String answer = etAnswer.getText().toString();
-                    String insertSQL = "INSERT INTO " + TABLE_NAME + "(question_statement, option_1, option_2, option_3, option_4, answer) VALUES ('" + questionStatement + "'," + option1 + "'," + option2 + "'," + option3 + "'," + option4 + "'," + answer + " )";
-                    questionPool.execSQL(insertSQL);
+//                    String insertSQL = "INSERT INTO " + TABLE_NAME + "(question_statement, option_1, option_2, option_3, option_4, answer) VALUES ('" + questionStatement + "'," + option1 + "'," + option2 + "'," + option3 + "'," + option4 + "'," + answer + " )";
+                    String insertSQL = "INSERT INTO " + TABLE_NAME +
+                            " (question_statement, option_1, option_2, option_3, option_4, answer) VALUES (?, ?, ?, ?, ?, ?)";
+                    SQLiteStatement statement = questionPool.compileStatement(insertSQL);
+                    statement.bindString(1, questionStatement);
+                    statement.bindString(2, option1);
+                    statement.bindString(3, option2);
+                    statement.bindString(4, option3);
+                    statement.bindString(5, option4);
+                    statement.bindString(6, answer);
+                    statement.executeInsert();
                 }
                 listAllQuestions();
             }
@@ -74,7 +84,7 @@ public class editQuestionActivity extends AppCompatActivity {
     private void listAllQuestions() {
         Cursor cursor = questionPool.query(TABLE_NAME, new String[] {"_id", "question_statement", "option_1", "option_2", "option_3", "option_4", "answer"}, null, null, null, null, null, null);
         SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(editQuestionActivity.this,
-                R.layout.list_item_6,
+                android.R.layout.simple_list_item_2,
                 cursor,
                 new String[]{"question_statement", "option_1", "option_2", "option_3", "option_4", "answer"},
                 new int[]{R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6},
